@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>list</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+    <ion-list>
+        <ion-item *ngFor="let pokemon of pokemons" color="dark" routerLink="/item/{{ pokemon.id }}">
+            <ion-avatar slot="start">
+                <img src="https://pokeres.bastionbot.org/images/pokemon/{{ pokemon.id }}.png">
+            </ion-avatar>
+            <ion-label>
+                {{ pokemon.name | titlecase }} <br />
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadPokemon($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Encore des pokémons..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    
+</ion-content>

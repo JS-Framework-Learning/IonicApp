@@ -1,9 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profil</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form (ngSubmit)="save()" #form="ngForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Prénom</ion-label>
+        <ion-input type="text"
+          [(ngModel)]="user.firstname"
+          name="firstname"
+          minlength="3" required #firstname="ngModel"
+        ></ion-input>
+      </ion-item>
+      <span *ngIf="firstname.hasError('minlength')">
+        Le prénom n'est pas bon
+      </span>
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="text" [(ngModel)]="user.name" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Date de naissance</ion-label>
+        <ion-datetime [(ngModel)]="user.birthday" name="birthday"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Genre de musique</ion-label>
+        <ion-select [(ngModel)]="user.music" name="music">
+          <ion-select-option *ngFor="let music of musics" [value]="music">
+            {{ music }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Ville</ion-label>
+        <ion-input type="text" [(ngModel)]="user.city" name="city"></ion-input>
+      </ion-item>
+    </ion-list>
 
+    <div class="ion-padding">
+      <ion-button color="primary" expand="block" type="submit" class="ion-no-margin" [disabled]="busy || !form.valid">
+        Enregistrer
+        <span *ngIf="busy">
+          <ion-spinner name="dots"></ion-spinner>
+        </span>
+      </ion-button>
+    </div>
+  </form>
 </ion-content>
+

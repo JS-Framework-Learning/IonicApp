@@ -1,3 +1,27 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <!-- déclaration de la sidebar -->
+    <ion-menu side="start" menuId="first" contentId="main">
+        <ion-header>
+            <ion-toolbar color="light">
+            <ion-title>Ionic</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content color="dark">
+            <ion-list>
+                <ion-item routerLink="/about" (click)="closeMenu()">
+                    <ion-icon name="ear-outline" slot="start"></ion-icon>
+                    <ion-label> About</ion-label>
+                </ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item routerLink="/team" (click)="closeMenu()">
+                    <ion-icon name="heart-outline" slot="start"></ion-icon>
+                    <ion-label> Team</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+
+    <!-- déclaration des routes -->
+    <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
